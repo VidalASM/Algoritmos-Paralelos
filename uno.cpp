@@ -1,21 +1,18 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+#include <math.h>
 
 using namespace std;
 
-const double MAX = 10;
+const int MAX = 10;
+const int n = 10, m = 10, p = 10;
 
-double product_block(double A[MAX][MAX], Double B [MAX][MAX],){
-    return 0;
-}
+void product(){
+    int MAX = 10;
 
-
-int main(){
-
-    int MAX = 500;
-
-    double A [MAX][MAX], B [MAX][MAX], R [MAX][MAX];
+    int A [MAX][MAX], B [MAX][MAX], R [MAX][MAX];
 
     for (int i = 0; i < MAX ; i ++)
         for (int j = 0; j < MAX ; j ++){
@@ -23,8 +20,8 @@ int main(){
             B [i][j] = rand() % 10 + 1;
         }
 
-	///âˆ— Initialize A and x, assign y = 0 âˆ—/
-	///âˆ— First pair of loops âˆ—/
+    ///— Initialize A and x, assign y = 0 —/
+    ///— First pair of loops —/
 
     for (int i = 0; i < MAX ; i ++){
         for (int j = 0; j < MAX ; j ++){
@@ -33,6 +30,47 @@ int main(){
                 R[i][j] = R[i][j] + A[i][k]*B[k][j];
         }
     }
+}
+
+void product_block(int A [n][m], int B [m][p], int C [n][p]){
+
+    int sum;
+    int M = 1;
+    int T = sqrt(M);
+    for(int I = 0; I < n; I++){
+        for(int J = 0; J < p; J++){
+            for(int K = 0; K < m; K++){
+                C[I][J] = A[I][K] * B[K][J];
+                for(int i = I; i < min(I + T, n); i++){
+                    for(int j = J; j < min(J+ T, p); j++){
+                        sum = 0;
+                        for(int k = K; k < min(K + T, m); k++){
+                            sum = sum + A[i][k] * B[k][j];
+                        }
+                    }
+                }
+            }
+        }
+    }
+    //return 0;
+}
+
+
+int main(){
+
+    //product();
+
+    const int MAX = 10;
+
+    int A [MAX][MAX], B [MAX][MAX], C [MAX][MAX];
+
+    for (int i = 0; i < MAX ; i ++)
+        for (int j = 0; j < MAX ; j ++){
+            A [i][j] = rand() % 10 + 1;
+            B [i][j] = rand() % 10 + 1;
+    }
+
+    product_block(A, B, C);
 
     /*for (int i = 0; i < MAX ; i ++){
         for (int j = 0; j < MAX ; j ++)
@@ -40,6 +78,6 @@ int main(){
         cout << "\n";
     }*/
 
-	return 0;
-	
+    return 0;
+
 }
