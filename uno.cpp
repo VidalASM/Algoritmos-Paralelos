@@ -6,11 +6,11 @@
 
 using namespace std;
 
-const int MAX = 10;
-const int n = 10, m = 10, p = 10;
+const int MAX = 500;
+const int n = 500, m = 500, p = 500;
 
 void product(){
-    int MAX = 10;
+    int MAX = 500;
 
     int A [MAX][MAX], B [MAX][MAX], R [MAX][MAX];
 
@@ -60,7 +60,7 @@ int main(){
 
     //product();
 
-    const int MAX = 10;
+    const int MAX = 500;
 
     int A [MAX][MAX], B [MAX][MAX], C [MAX][MAX];
 
